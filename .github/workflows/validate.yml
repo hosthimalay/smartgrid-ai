@@ -1,0 +1,28 @@
+name: Validate
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with: { terraform_version: "1.14.5" }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: "npm", cache-dependency-path: "dashboard/package-lock.json" }
+      - run: pip install pytest boto3
+      - run: pytest
+      - run: npm ci --prefix dashboard
+      - run: npm run build --prefix dashboard
+      - run: terraform fmt -check -recursive infrastructure
+      - run: terraform -chdir=infrastructure/environments/dev init -backend=false
+      - run: terraform -chdir=infrastructure/environments/dev validate
+

@@ -1,0 +1,8 @@
+aws_region           = "eu-west-1"
+aws_profile          = "default"
+project_name         = "smartgrid-ai"
+environment          = "dev"
+anomaly_threshold_kw = 80
+monthly_budget_usd   = 10
+# budget_notification_email = "your-email@example.com"
+
