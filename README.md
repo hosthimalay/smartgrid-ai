@@ -9,6 +9,7 @@ Python simulator -> AWS IoT Core -> IoT Rule
 ```
 
 The first release intentionally avoids Docker, SageMaker, Redshift, NAT Gateway and always-on compute. Those services are scaling options, not MVP requirements.
+<img width="2823" height="1482" alt="{B5581B00-AFED-49D8-9DF0-AECE91970C9A}" src="https://github.com/user-attachments/assets/c67693e3-cc1f-49c5-a72a-0a16708aa0f4" />
 
 ## What it demonstrates
 
